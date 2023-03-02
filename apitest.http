@@ -21,7 +21,7 @@ GET http://localhost:8080
 
 ###
 
-GET http://localhost:8080/w0-JOn8qwd
+GET http://localhost:8080/w0-JOn8qw
 
 ### 
 
@@ -34,4 +34,15 @@ Content-Type: application/json
 
 {
     "name" : "Sakib Al Hasan"
+}
+
+
+### 
+PUT http://localhost:8080/tamim-iqbal
+Content-Type: application/json
+
+{
+    "name" : "Tamim Iqbal",
+    "country": "Bangladesh",
+    "rank": 20
 }

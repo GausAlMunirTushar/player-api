@@ -21,8 +21,13 @@ app.use(express.json());
 * PATCH - /:id  - update player
 * DELETE- /:id  - delete  a player from db
 */
+// Delete Player
+app.delete('/:id', async (req, res) => {
+    const id = req.body.id
+    
+})
 
-// Find Player by ID
+// Update Player
 app.patch('/:id', async (req, res) => {
     const id = req.params.id
     const data = await fs.readFile(dbLocation)
@@ -40,8 +45,29 @@ app.patch('/:id', async (req, res) => {
     await fs.writeFile(dbLocation, JSON.stringify(players));
     res.status(201).json(player)
 })
+// Update Player or Create
+app.put('/:id', async (req, res) => {
+    const id = req.params.id
+    const data = await fs.readFile(dbLocation)
+    const players = JSON.parse(data)
+    let player = players.find((item) => item.id === id )
+    if(!player){
+        player = {
+            ...req.body,
+            id: shortid.generate()
+        };
+        players.push(player)
+    }
+    else{
+        player.name = req.body.name;
+        player.country = req.body.country;
+        player.rank = req.body.rank
+    }
+    await fs.writeFile(dbLocation, JSON.stringify(players))
+    res.status(201).json(player)
+})
 
-// Update Player
+// Find a  Player by ID
 
 app.get('/:id', async (req, res) => {
     const id = req.params.id
