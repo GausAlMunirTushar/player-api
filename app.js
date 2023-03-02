@@ -24,7 +24,17 @@ app.use(express.json());
 // Delete Player
 app.delete('/:id', async (req, res) => {
     const id = req.body.id
-    
+    const data = await fs.readFile(dbLocation)
+    const players = JSON.parse(data)
+    const player = players.find((item) => item.id === id )
+    if(!player){
+        return res.status(404).json({
+            message : 'Player Not Found'
+        })
+    }
+    const newPlayers = player.filter(item => item.id !== id)
+    await fs.writeFile(dbLocation, JSON.stringify(newPlayers))
+    res.status(203).send();
 })
 
 // Update Player
