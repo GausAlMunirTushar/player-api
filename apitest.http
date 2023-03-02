@@ -1,1 +1,37 @@
 GET http://localhost:8080/health
+
+
+### 
+
+
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+    "name": "Tamim",
+    "country": "BD",
+    "rank": 2
+}
+
+
+### 
+
+
+GET http://localhost:8080
+
+###
+
+GET http://localhost:8080/w0-JOn8qwd
+
+### 
+
+GET http://localhost:8080/tcLK1T7Xn
+
+
+### 
+PATCH http://localhost:8080/tcLK1T7Xn
+Content-Type: application/json
+
+{
+    "name" : "Sakib Al Hasan"
+}
